@@ -17,7 +17,7 @@ bool D3DSGUI::filePresent(std::string path) {
 sf2d_texture *D3DSGUI::loadTextureFromSdmcOrRomfs(std::string path)
 {
 	sf2d_texture * texture;
-	std::string filePath = "sdmc:/3ds/3DiScord/theme/" + path;
+	std::string filePath = "sdmc:/3ds/Discord/theme/" + path;
 
 	if (!filePresent(filePath)) {
 		filePath = "romfs:/" + path;
@@ -79,7 +79,7 @@ void D3DSGUI::draw_text(sftd_font * font, int x, int y, float size, unsigned int
 void D3DSGUI::loadThemeFromJson()
 {
 	try {
-		std::ifstream themefile("sdmc:/3ds/3DiScord/theme/theme.json");
+		std::ifstream themefile("sdmc:/3ds/Discord/theme/theme.json");
 		j_theme = nlohmann::json::parse(themefile);
 		clear_colour = getJsonInfo("clear-colour");
 		credentials_colour = getJsonInfo("credentials-colour");
@@ -173,9 +173,9 @@ D3DSGUI::D3DSGUI(){
 		emojiVec.push_back(tmpemoji);
 	}
 	emojispritesheettable_json.close();
-	if (!filePresent("sdmc:/3ds/3DiScord/theme/theme.json")) {
+	if (!filePresent("sdmc:/3ds/Discord/theme/theme.json")) {
 		std::ifstream themeromfs("romfs:/theme.json");
-		std::ofstream themesdmc("sdmc:/3ds/3DiScord/theme/theme.json");
+		std::ofstream themesdmc("sdmc:/3ds/Discord/theme/theme.json");
 		themesdmc << themeromfs.rdbuf();
 		themesdmc.close();
 		themeromfs.close();

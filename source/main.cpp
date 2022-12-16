@@ -7,9 +7,9 @@ int main(){
 	sftd_init();
 	romfsInit();
 	mkdir("sdmc:/3ds", 0777);
-	mkdir("sdmc:/3ds/3DiScord", 0777);
-	mkdir("sdmc:/3ds/3DiScord/theme", 0777);
-	remove("sdmc:/3ds/3DiScord/log.txt");
+	mkdir("sdmc:/3ds/Discord", 0777);
+	mkdir("sdmc:/3ds/Discord/theme", 0777);
+	remove("sdmc:/3ds/Discord/log.txt");
 	DiscordApp discordapp;
 	discordapp.Start();
 	romfsExit();

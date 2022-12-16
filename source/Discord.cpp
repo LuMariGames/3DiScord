@@ -37,16 +37,16 @@ void Discord::sendMessage(std::string msg){
 	std::string postData = "{ \"content\":\"" + msg + "\" }";
 	std::string sendMessageUrl;
 	if (currentGuild == 0)
-		sendMessageUrl = "https://discordapp.com/api/v6/channels/" + directMessages[currentChannel].id + "/messages";
+		sendMessageUrl = "https://discord.com/api/v6/channels/" + directMessages[currentChannel].id + "/messages";
 	else
-		sendMessageUrl = "https://discordapp.com/api/channels/" + guilds[currentGuild].channels[currentChannel].id + "/messages" ;
+		sendMessageUrl = "https://discord.com/api/channels/" + guilds[currentGuild].channels[currentChannel].id + "/messages" ;
 	D3dsNet.curlDiscordPost(sendMessageUrl , postData , token);	
 }
 
 std::string Discord::getUserNick(std::string uID)
 {
 	std::string nickname = "";
-	std::string nickurl = "https://discordapp.com/api/guilds/" + guilds[currentGuild].id + "/members/" + uID;
+	std::string nickurl = "https://discord.com/api/guilds/" + guilds[currentGuild].id + "/members/" + uID;
 	D3DSNet::http_response nickresponse = D3dsNet.curlDiscordGet(nickurl, token);
 	nlohmann::json j_complete = nlohmann::json::parse(nickresponse.body);
 	try {
@@ -64,7 +64,7 @@ long Discord::getUserHighestRole(std::string uID)
 {
 	long highestrole = 0xFFFFFF;
 	int highestpos = 0;
-	std::string rolesurl = "https://discordapp.com/api/guilds/" + guilds[currentGuild].id + "/members/" + uID;
+	std::string rolesurl = "https://discord.com/api/guilds/" + guilds[currentGuild].id + "/members/" + uID;
 	D3DSNet::http_response rolesresponse = D3dsNet.curlDiscordGet(rolesurl, token);
 	nlohmann::json j_complete = nlohmann::json::parse(rolesresponse.body);
 	logSD("Roles body: " + rolesresponse.body);
@@ -116,7 +116,7 @@ void Discord::refreshMessages(){
 
 void Discord::getChannelMessages(int channelIndex){
 	currentChannel = channelIndex;
-	std::string channelMessagesUrl = "https://discordapp.com/api/channels/" + guilds[currentGuild].channels[currentChannel].id + "/messages";
+	std::string channelMessagesUrl = "https://discord.com/api/channels/" + guilds[currentGuild].channels[currentChannel].id + "/messages";
 	D3DSNet::http_response channelmessagesresponse = D3dsNet.curlDiscordGet(channelMessagesUrl , token);
 	if(channelmessagesresponse.httpcode == 200){
 		nlohmann::json j_complete = nlohmann::json::parse(channelmessagesresponse.body);
@@ -186,7 +186,7 @@ void Discord::getChannelMessages(int channelIndex){
 }
 
 void Discord::getCurrentDirectMessages() {
-	std::string dmChannelUrl = "https://discordapp.com/api/v6/channels/" + directMessages[currentChannel].id + "/messages";
+	std::string dmChannelUrl = "https://discord.com/api/v6/channels/" + directMessages[currentChannel].id + "/messages";
 	D3DSNet::http_response dmChannelResponse = D3dsNet.curlDiscordGet(dmChannelUrl, token);
 
 
@@ -261,7 +261,7 @@ void Discord::getCurrentDirectMessages() {
 }
 
 void Discord::getDirectMessageChannels() {
-	std::string directMessagesChannelsUrl = "https://discordapp.com/api/v6/users/@me/channels";
+	std::string directMessagesChannelsUrl = "https://discord.com/api/v6/users/@me/channels";
 	D3DSNet::http_response dmChannelsResponse = D3dsNet.curlDiscordGet(directMessagesChannelsUrl, token);
 
 	if (dmChannelsResponse.httpcode == 200) {
@@ -391,7 +391,7 @@ void Discord::thread_loadData(void *arg){
 	discordPtr->loadingData = true;
 	while (discordPtr->loadingData) {
 		if (!discordPtr->loadedGuilds) {
-			std::string guildsUrl = "https://discordapp.com/api/users/@me/guilds";
+			std::string guildsUrl = "https://discord.com/api/users/@me/guilds";
 			D3DSNet::http_response guildsresponse = discordPtr->D3dsNet.curlDiscordGet(guildsUrl, token);
 			if (guildsresponse.httpcode == 200) {
 				try {
@@ -464,7 +464,7 @@ void Discord::thread_loadData(void *arg){
 			}
 		}
 		else {
-			std::string directMessagesChannelsUrl = "https://discordapp.com/api/v6/users/@me/channels";
+			std::string directMessagesChannelsUrl = "https://discord.com/api/v6/users/@me/channels";
 			D3DSNet::http_response dmChannelsResponse = discordPtr->D3dsNet.curlDiscordGet(directMessagesChannelsUrl, token);
 			if (dmChannelsResponse.httpcode == 200) {
 				try {
@@ -545,7 +545,7 @@ void Discord::thread_loadData(void *arg){
 
 			}
 			for (int i = 1; i < discordPtr->guildsAmount + 1; i++) {
-				std::string channelUrl = "https://discordapp.com/api/guilds/" + discordPtr->guilds[i].id + "/channels";
+				std::string channelUrl = "https://discord.com/api/guilds/" + discordPtr->guilds[i].id + "/channels";
 				D3DSNet::http_response channelresponse = discordPtr->D3dsNet.curlDiscordGet(channelUrl, token);
 				if (channelresponse.httpcode == 200) {
 					try {
@@ -658,7 +658,7 @@ std::string Discord::getUserAvatar(std::string userid, std::string avatarid)
 long Discord::fetchUserData(){
 	
 	logSD("Fetching userdata");
-	std::string userDataUrl = "https://discordapp.com/api/users/@me";
+	std::string userDataUrl = "https://discord.com/api/users/@me";
 	D3DSNet::http_response userdataresponse = D3dsNet.curlDiscordGet(userDataUrl , token);
 	logSD("userdata response : " + userdataresponse.body);
 	if(userdataresponse.httpcode == 200){
@@ -696,7 +696,7 @@ long Discord::fetchUserData(){
 }
 
 void Discord::getGuilds(){
-	std::string guildUrl = "https://discordapp.com/api/users/@me/guilds";
+	std::string guildUrl = "https://discord.com/api/users/@me/guilds";
 }
 void Discord::getChannels(){
 	
@@ -734,7 +734,7 @@ long Discord::login(std::string mail , std::string pass){
 		
 	}
 	
-	std::string loginUrl = "https://discordapp.com/api/auth/login";
+	std::string loginUrl = "https://discord.com/api/auth/login";
 	std::string postData = "{ \"email\":\"" + email + "\" , \"password\":\"" + password + "\" }";
 	D3DSNet::http_response loginresponse = D3dsNet.curlDiscordPost(loginUrl , postData , token);
 	logSD("Login response:");
@@ -778,7 +778,7 @@ long Discord::submit2facode(std::string code){
 	code2fa = code;
 
 	std::string postData = "{ \"code\":\"" + code2fa + "\" , \"ticket\":\"" + ticket + "\" }";
-	D3DSNet::http_response submit2facoderesponse = D3dsNet.curlDiscordPost( "https://discordapp.com/api/v6/auth/mfa/totp" , postData , token);
+	D3DSNet::http_response submit2facoderesponse = D3dsNet.curlDiscordPost( "https://discord.com/api/v6/auth/mfa/totp" , postData , token);
 	logSD("Submit 2FA Response:");
 	logSD(submit2facoderesponse.body);
 	if(submit2facoderesponse.httpcode == 200){
