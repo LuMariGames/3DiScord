@@ -1,4 +1,4 @@
-﻿#include "3DSGUI.hpp"
+﻿#include "3dsGUI.hpp"
 #include "log.hpp"
 #include <algorithm>
 #include <stdlib.h>
