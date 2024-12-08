@@ -1,4 +1,4 @@
-#include "3DSPad.hpp"
+#include "3dsPad.hpp"
 
 D3DSPad::D3DSPad(){
 }
