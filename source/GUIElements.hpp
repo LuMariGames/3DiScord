@@ -2,9 +2,7 @@
 #define GUIELEMENTS_HPP
 
 #include <3ds.h>
-#include <sfil.h>
-#include <sftd.h>
-#include <string>
+#include <string.h>
 
 typedef struct{
 	float x,y,w,h;
