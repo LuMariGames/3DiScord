@@ -2,7 +2,7 @@
 #include "log.hpp"
 #include "easyencryptor.hpp"
 #include <fstream>
-#include <3DS.h>
+#include <3ds.h>
 
 #define SLEEP_CLICK_NORMAL 150000
 #define SLEEP_CLICK_EXTENDED 350000
