@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   Discord3DS:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container:
       image: devkitpro/devkitarm:latest
     steps:
