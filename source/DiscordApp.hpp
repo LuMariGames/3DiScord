@@ -3,11 +3,11 @@
 
 
 
-#include "3DSTouch.hpp"
-#include "3DSPad.hpp"
-#include "3DSIME.hpp"
+#include "3dsTouch.hpp"
+#include "3dsPad.hpp"
+#include "3dsIME.hpp"
 #include "Discord.hpp"
-#include "3DSGUI.hpp"
+#include "3dsGUI.hpp"
 
 
 class DiscordApp{
