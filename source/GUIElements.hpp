@@ -2,7 +2,6 @@
 #define GUIELEMENTS_HPP
 
 #include <3ds.h>
-#include <sf2d.h>
 #include <sfil.h>
 #include <sftd.h>
 #include <string>
